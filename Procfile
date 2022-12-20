@@ -1,0 +1,1 @@
+web: build/install/si-base-backend/bin/si-base-backend

@@ -23,4 +23,22 @@ dependencies {
     implementation "ch.qos.logback:logback-classic:$logback_version"
     testImplementation "io.ktor:ktor-server-tests-jvm:$ktor_version"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+
+    //Exposed
+    implementation "org.jetbrains.exposed:exposed-core:$exposed_version"
+    implementation "org.jetbrains.exposed:exposed-jdbc:$exposed_version"
+    implementation "org.jetbrains.exposed:exposed-dao:$exposed_version"
+
+    //Postgresql
+    implementation "org.postgresql:postgresql:$postgresql_version"
+
+    //Hikari
+    implementation "com.zaxxer:HikariCP:$hikari_version"
+
+    //DI
+    implementation "io.insert-koin:koin-ktor:$koin_version"
+    implementation "io.insert-koin:koin-logger-slf4j:$koin_version"
+
+    //Util
+    implementation "com.aventrix.jnanoid:jnanoid:$jnanoid_version"
 }

@@ -13,7 +13,7 @@ import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger
 
 fun main() {
-    embeddedServer(Netty, port = System.getenv("PORT").toInt(), host = "localhost", module = Application::module)
+    embeddedServer(Netty, port = System.getenv("PORT").toInt(), module = Application::module)
         .start(wait = true)
 }
 

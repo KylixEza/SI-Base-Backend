@@ -31,6 +31,18 @@ class SIBaseRoute(
         }
     }
 
+    private fun Route.getUser() {
+        get<SIBaseRouteLocation.UserGetRoute> {
+            val uid = try {
+                call.parameters["uid"]
+            } catch (e: Exception) {
+                call buildSingleException e
+                return@get
+            } ?: ""
+            call buildSingleJSON { repository.getUser(uid) }
+        }
+    }
+
     private fun Route.postStudent() {
         post<SIBaseRouteLocation.StudentPostRoute> {
             val body = try {
@@ -118,6 +130,7 @@ class SIBaseRoute(
 
     fun Route.initRoutes() {
         postUser()
+        getUser()
         postStudent()
         getStudents()
         getStudent()

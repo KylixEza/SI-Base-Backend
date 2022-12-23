@@ -4,10 +4,13 @@ import com.si_base.model.student.StudentAvatarBody
 import com.si_base.model.student.StudentBody
 import com.si_base.model.student.StudentResponse
 import com.si_base.model.user.UserBody
+import com.si_base.model.user.UserResponse
 
 interface SIBaseRepository {
 
     suspend fun addUser(body: UserBody) //clear
+
+    suspend fun getUser(uid: String): UserResponse
 
     suspend fun addStudent(body: StudentBody) //clear
 

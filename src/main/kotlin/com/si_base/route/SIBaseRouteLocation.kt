@@ -7,6 +7,7 @@ sealed class SIBaseRouteLocation {
 
     companion object {
         const val POST_USER = "/user"
+        const val GET_USER = "/user/{uid}"
         const val POST_STUDENT = "/student"
         const val GET_STUDENTS = "/student"
         const val GET_STUDENT = "/student/{studentId}"
@@ -17,6 +18,9 @@ sealed class SIBaseRouteLocation {
 
     @Location(POST_USER)
     class UserPostRoute
+
+    @Location(GET_USER)
+    data class UserGetRoute(val uid: String)
 
     @Location(POST_STUDENT)
     class StudentPostRoute

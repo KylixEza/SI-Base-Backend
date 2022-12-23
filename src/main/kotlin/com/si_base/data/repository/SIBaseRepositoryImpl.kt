@@ -7,7 +7,9 @@ import com.si_base.model.student.StudentAvatarBody
 import com.si_base.model.student.StudentBody
 import com.si_base.model.student.StudentResponse
 import com.si_base.model.user.UserBody
+import com.si_base.model.user.UserResponse
 import com.si_base.util.toStudentResponse
+import com.si_base.util.toUserResponse
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
@@ -22,6 +24,10 @@ class SIBaseRepositoryImpl(
             it[email] = body.email
             it[phoneNumber] = body.phoneNumber
         }
+    }
+
+    override suspend fun getUser(uid: String): UserResponse = dbFactory.dbQuery {
+        UserTable.select { UserTable.uid eq uid }.mapNotNull { it.toUserResponse() }.single()
     }
 
     override suspend fun addStudent(body: StudentBody): Unit = dbFactory.dbQuery {

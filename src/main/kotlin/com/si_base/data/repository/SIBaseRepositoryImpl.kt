@@ -3,6 +3,7 @@ package com.si_base.data.repository
 import com.si_base.data.DatabaseFactory
 import com.si_base.data.table.StudentTable
 import com.si_base.data.table.UserTable
+import com.si_base.model.student.StudentAvatarBody
 import com.si_base.model.student.StudentBody
 import com.si_base.model.student.StudentResponse
 import com.si_base.model.user.UserBody
@@ -51,5 +52,11 @@ class SIBaseRepositoryImpl(
 
     override suspend fun deleteStudent(studentId: String): Unit = dbFactory.dbQuery {
         StudentTable.deleteWhere { StudentTable.studentId eq studentId }
+    }
+
+    override suspend fun updateStudentAvatar(studentId: String, body: StudentAvatarBody): Unit = dbFactory.dbQuery {
+        StudentTable.update({ StudentTable.studentId eq studentId }) {
+            it[avatar] = body.avatar
+        }
     }
 }

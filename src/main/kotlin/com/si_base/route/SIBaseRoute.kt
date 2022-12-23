@@ -1,6 +1,7 @@
 package com.si_base.route
 
 import com.si_base.data.repository.SIBaseRepository
+import com.si_base.model.student.StudentAvatarBody
 import com.si_base.model.student.StudentBody
 import com.si_base.model.user.UserBody
 import com.si_base.route.RouteResponseHelper.buildListJSON
@@ -95,6 +96,26 @@ class SIBaseRoute(
         }
     }
 
+    private fun Route.putStudentAvatar() {
+        put<SIBaseRouteLocation.StudentAvatarPutRoute> {
+            val studentId = try {
+                call.parameters["studentId"]
+            } catch (e: Exception) {
+                call buildSingleException e
+                return@put
+            } ?: ""
+
+            val body = try {
+                call.receive<StudentAvatarBody>()
+            } catch (e: Exception) {
+                call buildSingleException e
+                return@put
+            }
+
+            call buildSingleJSON { repository.updateStudentAvatar(studentId, body) }
+        }
+    }
+
     fun Route.initRoutes() {
         postUser()
         postStudent()
@@ -102,6 +123,7 @@ class SIBaseRoute(
         getStudent()
         putStudent()
         deleteStudent()
+        putStudentAvatar()
     }
 
 }

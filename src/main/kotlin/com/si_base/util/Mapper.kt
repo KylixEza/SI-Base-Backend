@@ -8,5 +8,6 @@ fun ResultRow.toStudentResponse() = StudentResponse(
     studentId = this[StudentTable.studentId],
     name = this[StudentTable.name],
     origin = this[StudentTable.origin],
-    datePlaceBirth = this[StudentTable.datePlaceBirth]
+    datePlaceBirth = this[StudentTable.datePlaceBirth],
+    avatar = this[StudentTable.avatar]
 )

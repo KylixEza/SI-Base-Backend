@@ -1,5 +1,6 @@
 package com.si_base.data.repository
 
+import com.si_base.model.student.StudentAvatarBody
 import com.si_base.model.student.StudentBody
 import com.si_base.model.student.StudentResponse
 import com.si_base.model.user.UserBody
@@ -17,4 +18,6 @@ interface SIBaseRepository {
     suspend fun editStudent(studentId: String, body: StudentBody) //clear
 
     suspend fun deleteStudent(studentId: String) //clear
+
+    suspend fun updateStudentAvatar(studentId: String, body: StudentAvatarBody) //clear
 }

@@ -13,5 +13,8 @@ data class StudentResponse(
     val origin: String,
 
     @SerializedName("date_place_birth")
-    val datePlaceBirth: String
+    val datePlaceBirth: String,
+
+    @SerializedName("avatar")
+    val avatar: String
 )

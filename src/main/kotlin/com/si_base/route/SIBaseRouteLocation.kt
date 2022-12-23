@@ -12,6 +12,7 @@ sealed class SIBaseRouteLocation {
         const val GET_STUDENT = "/student/{studentId}"
         const val PUT_STUDENT = "/student/{studentId}"
         const val DELETE_STUDENT = "/student/{studentId}"
+        const val PUT_STUDENT_AVATAR = "/student/{studentId}/avatar"
     }
 
     @Location(POST_USER)
@@ -31,4 +32,7 @@ sealed class SIBaseRouteLocation {
 
     @Location(DELETE_STUDENT)
     data class StudentDeleteRoute(val studentId: String)
+
+    @Location(PUT_STUDENT_AVATAR)
+    data class StudentAvatarPutRoute(val studentId: String)
 }

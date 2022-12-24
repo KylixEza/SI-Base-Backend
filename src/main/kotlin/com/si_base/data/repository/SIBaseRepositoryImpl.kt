@@ -18,11 +18,14 @@ class SIBaseRepositoryImpl(
 ): SIBaseRepository {
 
     override suspend fun addUser(body: UserBody): Unit = dbFactory.dbQuery {
-        UserTable.insert {
-            it[uid] = body.uid
-            it[name] = body.name
-            it[email] = body.email
-            it[phoneNumber] = body.phoneNumber
+        val user = UserTable.select { UserTable.uid eq body.uid }.firstOrNull()
+        if (user == null) {
+            UserTable.insert {
+                it[uid] = body.uid
+                it[email] = body.email
+                it[name] = body.name
+                it[phoneNumber] = body.phoneNumber
+            }
         }
     }
 
